@@ -1,0 +1,23 @@
+{
+  "name": "tt_restaurant_finder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server --open=public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salamandur/TT_Restaurant_Finder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/salamandur/TT_Restaurant_Finder/issues"
+  },
+  "homepage": "https://github.com/salamandur/TT_Restaurant_Finder#readme",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
+}
