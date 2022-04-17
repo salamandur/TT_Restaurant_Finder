@@ -2,14 +2,14 @@ const encodedParams = new URLSearchParams();
 encodedParams.append("language", "en_US");
 encodedParams.append("limit", "30");
 encodedParams.append("location_id", "147389");
-encodedParams.append("currency", "USD");
+encodedParams.append("currency", "TTD");
 
 const options = {
 	method: 'POST',
 	headers: {
 		'content-type': 'application/x-www-form-urlencoded',
 		'X-RapidAPI-Host': 'worldwide-restaurants.p.rapidapi.com',
-		'X-RapidAPI-Key': '58073180c3msha5c8b4cf3a6a292p15bdb0jsn447ddf7b84a5'
+		'X-RapidAPI-Key': 'db1b736a74msh8c11453393ade34p1c3a2djsn7da3f1c56ac6'
 	},
 	body: encodedParams
 };
@@ -35,16 +35,52 @@ function drawtable(response){
     html+= `<h2> ${record.name} </h2>
        <img src=${record.photo.images.original.url} width="300px ">
        <ul> Location: ${record.location_string} </ul>
-       <ul> Cuisine: ${record.caption}</ul>
-       <ul> Opening Hours: </ul>
+       <ul> Cuisine: `;
+    html += listcuisine(record.cuisine, html); 
+    html +=`
+       </ul>
+       <ul> Opening Hours: `;
+    //html += listhours(record.hours, html);
+    html +=`
+      </ul>
        <ul> Contact: ${record.phone}</ul> 
        <ul> Website: ${record.website}</ul>
        <ul> Price Range: ${record.price}</ul>
-       <ul> Rating: ${record.rating}</ul>`
-      ;
+       <ul> Rating: ${record.rating}</ul>`; 
   }
   docuresult.innerHTML = html; 
 }
 
 
-getdata();
+function listcuisine(cuisine, string){
+  string = '';
+ 
+  for(let list of cuisine){
+    console.log(list.name)
+    string += `${list.name}, `
+  }
+  return string;
+}
+
+function listhours(hours, str) {
+  str ='';
+  let open = 0; 
+  let close = ''; 
+
+  for (let list of hours.week_ranges){
+    console.log(list[0].open_time);
+    console.log(list[0].close_time);
+    open = list[0].open_time;
+    close = list[0].close_time; 
+    str += `Open: ${open} Close: ${close};
+ `;
+  }
+  return str; 
+  
+}
+
+
+
+
+
+//getdata();
