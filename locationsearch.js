@@ -4,7 +4,7 @@ const encodedParams = new URLSearchParams();
 encodedParams.append("q", searchkey);
 encodedParams.append("language", "en_US");
 
-const options = {
+const searchoption = {
 	method: 'POST',
 	headers: {
 		'content-type': 'application/x-www-form-urlencoded',
@@ -15,9 +15,8 @@ const options = {
 };
 
 
-
   try{
-    let response = await fetch('https://worldwide-restaurants.p.rapidapi.com/typeahead', options);
+    let response = await fetch('https://worldwide-restaurants.p.rapidapi.com/typeahead', searchoption);
     let loc_data = await response.json(); 
    for(let array of loc_data.results.data){
      console.log(array.result_object.location_id); 
@@ -31,7 +30,7 @@ const options = {
 }
 
 
-searchlocation("chaguanas");
+//searchlocation("chaguanas");
 
 
 

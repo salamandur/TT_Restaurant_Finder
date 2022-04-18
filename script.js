@@ -79,8 +79,59 @@ function listhours(hours, str) {
   
 }
 
+function getlocation(){
+    
+}
+
+
+async function getlocationID(city){
+  const encodedParams = new URLSearchParams();
+encodedParams.append("q", city);
+encodedParams.append("language", "en_US");
+
+const options_locationID = {
+	method: 'POST',
+	headers: {
+		'content-type': 'application/x-www-form-urlencoded',
+		'X-RapidAPI-Host': 'worldwide-restaurants.p.rapidapi.com',
+		'X-RapidAPI-Key': '7af2f43e27msh7847b6f6fed0cfap111851jsn6cb2ad420860'
+	},
+	body: encodedParams
+};
+
+try{
+  let response = await fetch('https://worldwide-restaurants.p.rapidapi.com/typeahead', options_locationID); 
+  let location = await response.json(); 
+    console.log(location.results.data[0].result_object.location_id);
+    //for(let loop of location.results.data){
+    //console.log(loop.result_object.location_id) ;  
+   // }
+  
+}catch(e){
+  console.log(e);
+}
+}
 
 
 
 
+
+function locationselector(){
+  let result = document.getElementById('location').value;
+
+ 
+  if(result === "myLocation"){
+    console.log("the location one was selected");
+    
+  }
+
+  if(result ==="searchlocation"){
+    document.getElementById("locationsearch").innerHTML = `<input type= "text" id= "searchinput"/>`; 
+   
+  }
+  console.log(result); 
+  
+}
+ 
+locationselector(); 
 //getdata();
