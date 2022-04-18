@@ -1,1 +1,42 @@
+nav{
+  background-color: #7ABFA9;
+}
 
+.tithead{
+  color: #1D5E49;
+  font-family: "Arial";
+  margin-left: 183px;
+  font-size: 34px;
+  margin-bottom: 25px;
+}
+.logo{
+  position:absolute;
+}
+/* .butto{
+  vertical-align: baseline;
+  padding: 7px;
+  background-color: #88623A; 
+  border-radius: 100px;
+  margin: 0;
+  top: 50%;
+  
+}
+.nav-content{
+  position: absolute;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.butto a:hover{
+  color: #38D5A2;
+  background-color: #88623A;
+}
+.butto a{
+  font-size: 15px;
+  
+}
+@media screen and (min-width: 768px) {
+  .butto{
+    margin-top: 51px;
+    margin-right: 5px;
+  }
+} */

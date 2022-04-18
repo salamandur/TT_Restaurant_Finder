@@ -1,72 +1,107 @@
-r<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css" type="text/css"/>
     <title>Hungryman Answers</title>
     <style>
-			
-      body{
+
+			body{
         background-color: #F7F4E1;
 				overflow-x: scroll;
 				padding: 0px;
 				margin: 0px:
       }
-
 			.heading{
-				background-color: #40826d;
 				padding: 20px;
-				box-shadow: 0px 3px;
+/* 				background-color:#38D5A2; */
+        background-color: #40ab88;
+				display: flex;
+				flex: nowrap;
+				justify-content: space-between;
+		
 			}
-
-			#tithead{
-				position: absolute;
-				right: 20px:
-			}
+      
 			.heading li{
 				text-align: right;
 				display: inline;
-				padding: 20px;
+				padding: 50px;
 				transition: .3s ease;
 			}
-			.heading li a{
-				text-decoration: none;
+/* 			.heading li a{
 				color: white;
-				padding: 10px;
+				background-color: #865827;
+			} */
+      
+      #form{
+				position: sticky;
+        background-color: #A2F2BD;
+        color: black;
+        font-weight: bold;
+				width: 250px;
+				height: 100vh;
+				
+				
+      }
+			#filterp{
+				display: inline;
+				font-family: "Arial";
+				font-size: 20px;
+				color: red; 
+				margin:20px;			
 			}
-      .heading li a:hover{
-				color: blue;
-			}
+			
+			
     </style>
 </head>
 
 <body>
-
-    <a name="top"></a>
-   <div class="heading" >
+  <div class="navbar-fixed ">
+    <nav class="nav-extended">
+    <div class="nav-wrapper ">
+      <img class="logo left brand-logo" src="logo.png" alt="Website logo" width="180vw">
+      <h1 class="tithead navbar-header">Hungryman Answers</h1>
+      
+<!--       <div class= "nav-content">
+      <ul id="nav-mobile" class=" right">
+        <li class="butto "><a href="Login.html"> Login </a></li>
+        <li class="butto"><a href="signup.html"> Sign Up </a></li>
+      </ul>
+      </div> -->
+    </div>
+    </nav>
+  </div>
+ 
+	
+	
+		<a name="top"></a>
+<!--    <div class="heading" >
         <div class="logo">
-            <img src="logo.png" alt="Website logo" width="125px">
+            <img src="logo.png" alt="Website logo" width="200px">
         </div>
-        <h1 id=" tithead"> Hungryman Answers </h1>
+		 			<div class="tithead">
+						<h1> Hungryman Answers </h1>
+					</div>
+        
 				<nav>
-		       <li><a href="Login.html"> Log In </a></li>
-		       <li><a href="signup.html"> Sign Up </a></li>
+		       <li id="butto"><a href="Login.html"> Log In </a></li>
+		       <li id="butto"><a href="signup.html"> Sign Up </a></li>
 		   </nav>
-   </div>
-
+   </div> -->
+	<aside class="filtersection"> 
+		<div class="filtertest"> 
+			<div class="searchbutton"> 
+		</div> 
   <div id="search"><input type="text" placeholder="Search.."></div>
    
   <form id = "form">
-   <div> 
-       <p> Filter By: </p>
-
-       <label for="location"> Location: </label>
-       <select name="location" id="location" onchange = "locationselector()"> 
-            <option value = "myLocation"> My Location </option>
-            <option value = "searchlocation"> Search Location </option>
-       </select>
+   
+       <p id="filterp"> Filter By: </p>
 
      <p id = "locationsearch"></p>
 
@@ -81,50 +116,62 @@ r<!DOCTYPE html>
        <label for="Mexican"> Mexican </label>
        <br>
 
-       <h5> Price Range: </h5>
-       <input type="checkbox">
-       <label for=">$1000"> >$1000 </label>
+<!--        <h5> Price Range: </h5>
+       <input type="checkbox" class="filled-in" checked="checked">
+       <label for=">$1000"> >$$$ </label>
        <br>
-       <input type="checkbox">
-       <label for="$500-$1000"> $500-$1000 </label>
+       <input type="checkbox" class="filled-in" checked="checked">
+       <label for="$500-$1000" class="filled-in" checked="checked"> $$-$$$ </label>
        <br>
-       <input type="checkbox">
-       <label for="<$500"> <$500 </label>
-       <br>
+       <input type="checkbox" class="filled-in" checked="checked">
+       <label for="<$500"> <$-$$ </label>
+       <br> -->
 
        <h5> Rating: </h5>
-       <input type="checkbox">
-       <label for="5 Stars"> 5 Stars </label>
+       <img id = "5star" src="ratings/5star.png" width = 40px onclick="SortByRating(5)">
        <br>
-       <input type="checkbox">
-       <label for="4 Stars"> 4 Stars </label>
+       <img id = "4star" src="ratings/4star.png" width = 40px onclick="SortByRating(4)">
        <br>
-       <input type="checkbox">
-       <label for="3 Stars"> 3 stars </label>
+       <img id = "3star" src="ratings/3star.png" width = 40px onclick="SortByRating(3)">
        <br>
-       <input type="checkbox">
-       <label for="2 Stars"> 2 stars </label>
+       <img id = "2star" src="ratings/2star.png" width = 40px onclick="SortByRating(2)">
        <br>
-       <input type="checkbox">
-       <label for="1 Stars"> 1 stars </label>
+       <img id = "1star" src="ratings/1star.png" width = 40px onclick="SortByRating(1)">
        <br>
+       <p id= "0star" onclick = "SortByRating(0)">No Rating</p>
 
        <button type="button"> Submit</button>
-   </div>
+   <input id = "locationbutton" type= "button" value ="My Location" />
     </form>
-
+	</aside>
    <br>
-   <input type="text" placeholder="Search...">
+		</div>
+		
    
-   <div id = "restaurant">
-      
-    
-    <a href="#top"> Back to top</a>
-</body>
+   <div id = "restaurant"></div>
+        <div class="card">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="logo.png">   <!-- i changed "images/office.png" to logo.png cause it was giving a error -nick         -->
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+      <p><a href="#">This is a link</a></p>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+      <p>Here is some more information about this product that is only revealed once clicked on.</p>
+    </div>
+  </div>
 
+  I got this^ from https://materializecss.com/cards.html
+    
+    
+    
+	<a href="#top"> Back to top</a>
+
+</body>
   
 
 <script src= "script.js"></script>
-<script src = "locationsearch.js"></script> 
   
 </html>
