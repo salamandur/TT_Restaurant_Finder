@@ -12,10 +12,12 @@
     <style>
 
 			body{
+        display: grid;
         background-color: #F7F4E1;
 				overflow-x: scroll;
-				padding: 0px;
-				margin: 0px:
+				padding: 0em;
+				margin: 0px;
+   
       }
 			.heading{
 				padding: 20px;
@@ -39,24 +41,66 @@
 			} */
       
       #form{
+        padding-top: 15px;
 				position: sticky;
-        background-color: #A2F2BD;
+        background-color: #575757;
         color: black;
         font-weight: bold;
-				width: 250px;
-				height: 100vh;
+				width: 100%;
+				height: 40vh;
 				
 				
       }
+      #star0{
+        margin-left: 20px;
+        font-size: 15px;
+        font-family: "Calibri";
+        font-weight: lighter;
+        color: orange;
+        font-style: italic;
+      }
+      #star0:hover{
+        font-weight: bolder;
+        font-size: 17px;
+      }
 			#filterp{
 				display: inline;
-				font-family: "Arial";
-				font-size: 20px;
-				color: red; 
-				margin:20px;			
+				font-family: "Calibri";
+				font-size: 17px;
+				color:  #A2F2BD;
+				margin:10px;	
+        font-style: italic;	
 			}
-			
-			
+      #locationbutton{
+        margin-left: 20px;
+        margin-top: 12px;
+        margin-bottom: 8px;
+        border-radius: 15px;
+        background-color: #ffa500;
+      }
+      #locationbutton:hover{
+        color: #4DF6BF;
+      }
+      #filtby{
+
+        display: inline;
+				font-family: "Calibri";
+				font-size: 22px;
+				color:  #A2F2BD ;
+				margin:10px;
+      }
+			.img:hover{
+        width: 110px;
+      }
+			.img{
+        margin-left: 20px;
+      }
+      .small{
+        max-height: 200px;
+        max-width: 200px;
+      }
+
+       
     </style>
 </head>
 
@@ -64,7 +108,7 @@
   <div class="navbar-fixed ">
     <nav class="nav-extended">
     <div class="nav-wrapper ">
-      <img class="logo left brand-logo" src="logo.png" alt="Website logo" width="180vw">
+      <img class="logo left brand-logo" src="logo.png" alt="Website logo" width="185vw">
       <h1 class="tithead navbar-header">Hungryman Answers</h1>
       
 <!--       <div class= "nav-content">
@@ -75,99 +119,78 @@
       </div> -->
     </div>
     </nav>
+    <a name="top"></a>
   </div>
  
-	
-	
-		<a name="top"></a>
-<!--    <div class="heading" >
-        <div class="logo">
-            <img src="logo.png" alt="Website logo" width="200px">
-        </div>
-		 			<div class="tithead">
-						<h1> Hungryman Answers </h1>
-					</div>
-        
-				<nav>
-		       <li id="butto"><a href="Login.html"> Log In </a></li>
-		       <li id="butto"><a href="signup.html"> Sign Up </a></li>
-		   </nav>
-   </div> -->
+
 	<aside class="filtersection"> 
 		<div class="filtertest"> 
 			<div class="searchbutton"> 
 		</div> 
-  <div id="search"><input type="text" placeholder="Search.."></div>
    
   <form id = "form">
-   
-       <p id="filterp"> Filter By: </p>
+   <p>
+       <h1 id="filtby"> Filter By: </h1>
+       <br><br><h5 id="filterp"> Location: </h5>
+     <p id = "locationsearch"><input id = "locationbutton" type= "button" value ="Near to me" /></p>
 
-     <p id = "locationsearch"></p>
-
-       <h5> Cuisine: </h5>
-       <input type="checkbox">
-       <label for="Chinese"> Chinese </label>
+      
+      <div id = "rating">
+       <h5 id="filterp"> Rating: </h5>
        <br>
-       <input type="checkbox">
-       <label for="Indian"> Indian </label>
+       <img class="img"id = "star5" src="ratings/5star.png" width = 100px onclick="SortByRating(5)">
        <br>
-       <input type="checkbox">
-       <label for="Mexican"> Mexican </label>
+       <img class="img" id = "star4" src="ratings/4star.png" width = 100px onclick="SortByRating(4)">
        <br>
-
-<!--        <h5> Price Range: </h5>
-       <input type="checkbox" class="filled-in" checked="checked">
-       <label for=">$1000"> >$$$ </label>
+       <img class="img"id = "star3" src="ratings/3star.png" width = 100px onclick="SortByRating(3)">
        <br>
-       <input type="checkbox" class="filled-in" checked="checked">
-       <label for="$500-$1000" class="filled-in" checked="checked"> $$-$$$ </label>
+       <img class="img"id = "star2" src="ratings/2star.png" width = 100px onclick="SortByRating(2)">
        <br>
-       <input type="checkbox" class="filled-in" checked="checked">
-       <label for="<$500"> <$-$$ </label>
-       <br> -->
-
-       <h5> Rating: </h5>
-       <img id = "5star" src="ratings/5star.png" width = 40px onclick="SortByRating(5)">
+       <img class="img"id = "star1" src="ratings/1star.png" width = 100px onclick="SortByRating(1)">
        <br>
-       <img id = "4star" src="ratings/4star.png" width = 40px onclick="SortByRating(4)">
-       <br>
-       <img id = "3star" src="ratings/3star.png" width = 40px onclick="SortByRating(3)">
-       <br>
-       <img id = "2star" src="ratings/2star.png" width = 40px onclick="SortByRating(2)">
-       <br>
-       <img id = "1star" src="ratings/1star.png" width = 40px onclick="SortByRating(1)">
-       <br>
-       <p id= "0star" onclick = "SortByRating(0)">No Rating</p>
-
-       <button type="button"> Submit</button>
-   <input id = "locationbutton" type= "button" value ="My Location" />
+       <p id= "star0" onclick = "SortByRating(0)">No Rating</p>
+      </div>
+   </p>
     </form>
 	</aside>
-   <br>
-		</div>
+  
 		
+   <main id = "restaurant"></main>
+
+
+  <footer> </footer>
    
-   <div id = "restaurant"></div>
+  <!--
         <div class="card">
     <div class="card-image waves-effect waves-block waves-light">
-      <img class="activator" src="logo.png">   <!-- i changed "images/office.png" to logo.png cause it was giving a error -nick         -->
+      <img class="activator" src="logo.png">            
     </div>
     <div class="card-content">
       <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-      <p><a href="#">This is a link</a></p>
+      <p><a href="#">Go to website</a></p>
     </div>
-    <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-      <p>Here is some more information about this product that is only revealed once clicked on.</p>
+    <div class="card-reveal result" >
+      <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+      <p><h2 id = "rstname"> </h2>
+        <ul><img id="rstimg"></ul>
+        <ul id="rstloc"></ul>
+        <ul id="rstcuis">
+        </ul>
+        <ul id="rstopen">
+       </ul>
+        <ul id="rstcont"> </ul> 
+        <ul id="rstweb"></ul>
+        <ul id="rstprc"> </ul>
+        <ul id="rstrat"> </ul> </p>
     </div>
+          <a href="#top"> Back to top</a>
   </div>
-
-  I got this^ from https://materializecss.com/cards.html
+-->
+  
     
     
     
-	<a href="#top"> Back to top</a>
+	
 
 </body>
   

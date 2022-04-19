@@ -1,48 +1,9 @@
 let result; 
-let cuisinetype = new Array("hello", "flaco", "boborasta");
+let count = 0; 
 
+ getdata();
 
-displaycuisines(); 
-
-cuisineoptions("anotherfood");
-
-displaycuisines();
-
-
-function cuisineoptions(cuisine){
-  let count = 0; 
-  let found = false;
-  
-while (cuisinetype[count]!= undefined){
-  if(cuisinetype[count] === cuisine){
-    found = true;
-    break; 
-  }
-  count++; 
-  console.log(count);
-  console.log(found);
-}
-
-  if(!found){
-    console.log(count);
-    count++;
-    console.log(count);
-    cuisinetype[count]=cuisine;
-  }
-
-}
-
-
-function displaycuisines(){
-  let count = 0; 
-  while(cuisinetype[count]!= undefined){
-    console.log(cuisinetype[count]); 
-    count++; 
-  }
-}
- 
-
-async function getdata(){
+async function getdata(){ 
 
 const generalParams = new URLSearchParams();
 generalParams.append("language", "en_US");
@@ -59,9 +20,6 @@ const options = {
 	},
 	body: generalParams
 };
-
-
-  
     try{
       let resp= await fetch('https://worldwide-restaurants.p.rapidapi.com/search', options); 
       result = await resp.json();
@@ -69,7 +27,9 @@ const options = {
     }catch(e){
       console.log(e);
     }
+  
   }
+
 
 async function getcitydata(citycode){
   
@@ -102,9 +62,10 @@ const cityoptions = {
 }
 
 function drawtable(response){
+  let result;
   let photourl  = "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&w=1000&q=80";
   let docuresult= document.querySelector('#restaurant');
-
+  
   let html = ''; 
 
   for(let record of response.results.data){
@@ -116,21 +77,30 @@ function drawtable(response){
       photourl  = "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&w=1000&q=80";
     }
   
-    html+= `<h2> ${record.name} </h2>
-       <ul><img src = ${photourl} width = 300px></ul>
-       <ul> Location: ${record.location_string} </ul>
-       <ul> Cuisine: `;
-    html += listcuisine(record.cuisine, html); 
-    html +=`
-       </ul>
-       <ul> Opening Hours: `;
-    //html += listhours(record.hours, html);
-    html +=`
-      </ul>
-       <ul> Contact: ${record.phone}</ul> 
-       <ul> Website: ${record.website}</ul>
-       <ul> Price Range: ${record.price}</ul>
-       <ul> Rating: ${record.rating}</ul>`; 
+
+
+    html+= `<div class="row">
+    <div class="col s12 m7">
+      <div class="card">
+        <div class="card-image">
+          <img src=${photourl} width =>
+          <span class="card-title">${record.name}</span>
+        </div>
+        <div class="card-content">
+          <p><ul id="rstloc"> Location: ${record.location_string} </ul>
+          <ul id="rstcuis"> Cuisine: `;
+       html +=  listcuisine(record.cuisine, html);
+       html += `<ul id="rstcont"> Contact: ${record.phone}</ul> 
+    <ul id="rstprc"> Price Range: ${record.price}</ul>
+    <ul id="rstrat"> Rating: ${record.rating}</ul>
+       </p>
+        </div>
+        <div class="card-action">
+          <a href=${record.website}>This is a link</a>
+        </div>
+      </div>
+    </div>
+  </div>` ;
   }
   docuresult.innerHTML = html; 
 }
@@ -139,28 +109,11 @@ function listcuisine(cuisine, string){
   string = '';
  
   for(let list of cuisine){
-  //  console.log(list.name)
     string += `${list.name}, `
   }
   return string;
 }
 
-function listhours(hours, str) {
-  str ='';
-  let open = 0; 
-  let close = ''; 
-
-  for (let list of hours.week_ranges){
-    console.log(list[0].open_time);
-    console.log(list[0].close_time);
-    open = list[0].open_time;
-    close = list[0].close_time; 
-    str += `Open: ${open} Close: ${close};
- `;
-  }
-  return str; 
-  
-}
 
 
 
@@ -178,7 +131,7 @@ function listhours(hours, str) {
     console.log(crd.latitude);
     console.log(crd.longitude);
 
-    //getcity(crd.latitude, crd.longitude);
+    getcity(crd.latitude, crd.longitude);
   }
 
   function error(err) {
@@ -191,7 +144,6 @@ function listhours(hours, str) {
 
 
 document.querySelector('#locationbutton').addEventListener('click', locate);
-
 //end of to get user location
 
 
@@ -274,21 +226,28 @@ let html = '';
         photourl  = "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&w=1000&q=80";
       }
     
-      html+= `<h2> ${record.name} </h2>
-         <ul><img src = ${photourl} width = 300px></ul>
-         <ul> Location: ${record.location_string} </ul>
-         <ul> Cuisine: `;
-      html += listcuisine(record.cuisine, html); 
-      html +=`
-         </ul>
-         <ul> Opening Hours: `;
-      //html += listhours(record.hours, html);
-      html +=`
-        </ul>
-         <ul> Contact: ${record.phone}</ul> 
-         <ul> Website: ${record.website}</ul>
-         <ul> Price Range: ${record.price}</ul>
-         <ul> Rating: ${record.rating}</ul>`; 
+      html+= `<div class="row">
+    <div class="col s12 m7">
+      <div class="card">
+        <div class="card-image">
+          <img src=${photourl} width =>
+          <span class="card-title">${record.name}</span>
+        </div>
+        <div class="card-content">
+          <p><ul id="rstloc"> Location: ${record.location_string} </ul>
+          <ul id="rstcuis"> Cuisine: `;
+       html +=  listcuisine(record.cuisine, html);
+       html += `<ul id="rstcont"> Contact: ${record.phone}</ul> 
+    <ul id="rstprc"> Price Range: ${record.price}</ul>
+    <ul id="rstrat"> Rating: ${record.rating}</ul>
+       </p>
+        </div>
+        <div class="card-action">
+          <a href=${record.website}>This is a link</a>
+        </div>
+      </div>
+    </div>
+  </div>` ; 
     }}
   docuresult.innerHTML = html; ; 
 }
@@ -297,5 +256,20 @@ let html = '';
 
 
 //getlocationID("port of spain"); 
+// // Import the functions you need from the SDKs you need
+// import { initializeApp } from "firebase/app";
+// // TODO: Add SDKs for Firebase products that you want to use
+// // https://firebase.google.com/docs/web/setup#available-libraries
 
-//getdata();
+// // Your web app's Firebase configuration
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCgaktm0IYgoEp6-v4fwF615cMb_Bzzh4k",
+//   authDomain: "hungryman-answers.firebaseapp.com",
+//   projectId: "hungryman-answers",
+//   storageBucket: "hungryman-answers.appspot.com",
+//   messagingSenderId: "163606395482",
+//   appId: "1:163606395482:web:514df4e967ff44c639f663"
+// };
+
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
